@@ -3,6 +3,7 @@
 
 #include <string>
 #include <vector>
+#include <iostream>
 
 class Room;
 class Course;
@@ -18,7 +19,26 @@ class Person
         Room* _currentRoom;
     public:
         Person(std::string p_name);
-        Room* room() {return (_currentRoom);}
+        std::string getName();
+        Room* getCurrentRoom();
+        void setName(std::string p_name);
+        void setCurrentRoom(Room* p_room);
+        ~Person();
+};
+
+class Student : public Person
+{
+    private:
+        std::vector<Course*> _subscribedCourse;
+
+    public:
+        Student(std::string p_name);
+        void attendClass(Classroom* p_classroom);
+        void exitClass();
+        void graduate(Course* p_course);
+        std::vector<Course *> getSubscribedCourse();
+        int subscribeCourse(Course* p_course);
+        ~Student();
 };
 
 class Staff : public Person
@@ -29,17 +49,15 @@ class Staff : public Person
         void sign(Form* p_form);
 };
 
-
-
-class Student : public Person
+class Professor : public Staff
 {
     private:
-        std::vector<Course*> _subscribedCourse;
+        Course* _currentCourse;
 
     public:
-        void attendClass(Classroom* p_classroom);
-        void exitClass();
-        void graduate(Course* p_course);
+        void assignCourse(Course* p_course);
+        void doClass();
+        void closeCourse();
 };
 
 class Headmaster : public Staff
@@ -58,17 +76,6 @@ class Secretary : public Staff
     public:
         Form* createForm(FormType p_formType);
         void archiveForm();
-};
-
-class Professor : public Staff
-{
-    private:
-        Course* _currentCourse;
-
-    public:
-        void assignCourse(Course* p_course);
-        void doClass();
-        void closeCourse();
 };
 
 #endif

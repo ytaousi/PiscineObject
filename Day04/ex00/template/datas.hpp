@@ -7,6 +7,20 @@
 class Student;
 class Professor;
 
+enum class FormType
+{
+	CourseFinished,
+	NeedMoreClassRoom,
+	NeedCourseCreation,
+	SubscriptionToCourse
+};
+
+enum class Event
+{
+	RingBell
+};
+
+
 /*
 You're free to edit those class as much as you like, with the only limitation that the classes must perform the required interactions with one another.
 
@@ -146,14 +160,6 @@ class Professor : public Staff
         void closeCourse();
 };
 
-enum class FormType
-{
-	CourseFinished,
-	NeedMoreClassRoom,
-	NeedCourseCreation,
-	SubscriptionToCourse
-};
-
 class Form
 {
     private:
@@ -202,9 +208,6 @@ class SubscriptionToCourseForm : public Form
 
 
 
-enum class Event
-{
-	RingBell
-};
+
 
 #endif
