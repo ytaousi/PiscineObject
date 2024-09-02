@@ -5,8 +5,8 @@ Course::Course(std::string p_name)
 {
     this->setName(p_name);
     this->setResponsable(NULL);
-    this->setNumberOfClassToGraduate(0);
-    this->setMaximumNumberOfStudent(0);
+    this->setNumberOfClassToGraduate(3);
+    this->setMaximumNumberOfStudent(18);
     this->_students.clear();
 }
 

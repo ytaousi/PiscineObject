@@ -19,7 +19,7 @@ class Person
         Room* _currentRoom;
     public:
         Person(std::string p_name);
-        std::string getName();
+        std::string getName() const;
         Room* getCurrentRoom();
         void setName(std::string p_name);
         void setCurrentRoom(Room* p_room);

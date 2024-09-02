@@ -5,5 +5,6 @@
 
 int main()
 {
+    StudentList *studentList = new StudentList();
     return (0);
 }

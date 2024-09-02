@@ -2,6 +2,7 @@
 #define ROOM_HPP
 
 #include <vector>
+#include <iostream>
 
 class Person;
 class Course;
@@ -10,14 +11,25 @@ class Form;
 class Room
 {
     private:
-        long long ID;
-        std::vector<Person*> _occupants;
+        static int              _ID;
+        int                     _roomID;
+        std::vector<Person*>    _occupants;
+        int                     _maximumNumberOfOccupants;
+        Course*                 _currentCourse;
     public:
         Room();
         bool canEnter(Person*);
         void enter(Person*);
         void exit(Person*);
+        Course* getCurrentCourse();
+        std::vector<Person*> getOccupants();
+        int getRoomID();
+        int getMaximumNumberOfOccupants();
+        void setRoomID(int p_roomID);
+        void addPersonToRoomOccupants(std::vector<Person*> p_occupants);
+        void setMaximumNumberOfOccupants(int p_maximumNumberOfOccupants);
         void printOccupant();
+        ~Room();
 };
 
 class Classroom : public Room

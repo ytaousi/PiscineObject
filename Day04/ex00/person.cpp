@@ -12,7 +12,7 @@ Person::~Person()
 }
 
 // Getters
-std::string Person::getName()
+std::string Person::getName() const
 {
     return this->_name;
 }
