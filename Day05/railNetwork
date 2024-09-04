@@ -28,7 +28,7 @@ Rail RailNodeA RailNodeE 19.0
 Rail RailNodeA RailNodeG 6.7
 Rail RailNodeB RailNodeD 20.24
 
-
+.
 
 Node  - NodeName
 Event - EventType - probabilty - duration - location 
