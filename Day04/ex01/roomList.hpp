@@ -1,16 +1,23 @@
 #ifndef ROOMLIST_HPP
 #define ROOMLIST_HPP
 
-#include "singetons.hpp"
+#include "person.hpp"
+#include "room.hpp"
 
-class RoomList : public Room
+class RoomList
 {
     private:
-        int _roomID;
         std::vector<Room *> _roomList;
+    protected:
+        RoomList() {};
+        static RoomList *_instance;
     public:
-        RoomList();
-        ~RoomList();
+        static RoomList *getInstance();
+        virtual ~RoomList() {this->_roomList.clear();};
+        std::vector<Room *> getRoomList();
+        Room* getRoom(Room *p_room);
+        int addRoom(Room *p_room);
+        int removeRoom(Room *p_room);
 };
 
 #endif

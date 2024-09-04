@@ -14,8 +14,6 @@ class Form
 {
     protected:
         Form() {};
-        Form(const Form&) = delete;
-        Form& operator=(const Form&) = delete;
         static Form* instance;
 
     public:
@@ -41,8 +39,6 @@ class Person
 {
     protected:
         Person() {};
-        Person(const Person&) = delete;
-        Person& operator=(const Person&) = delete;
         static Person* instance;
 
     public:

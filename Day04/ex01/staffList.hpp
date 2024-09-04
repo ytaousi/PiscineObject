@@ -1,39 +1,22 @@
 #ifndef STAFFLIST_HPP
 #define STAFFLIST_HPP
 
-#include "singetons.hpp"
+#include "person.hpp"
 
-class StaffList : public Person
+class StaffList
 {
     private:
         std::vector<Person *> _staffList;
+    protected:
+        StaffList() {};
+        static StaffList* _instance;
     public:
-        StaffList();
-        ~StaffList();
-        std::vector<Person *> getStaffList() {
-            return this->_staffList;
-        };
-        Person& getStaff(Person *staff) {
-            for (std::vector<Person *>::iterator it = _staffList.begin(); it != _staffList.end(); it++) {
-                if (*it == staff) {
-                    return **it;
-                }
-            }
-            std::cout << " Staff Not Found " << std::endl;
-        }
-        void addStaff(Person *staff) {
-            _staffList.push_back(staff);
-        };
-        void removeStaff(Person *staff) {
-            for (std::vector<Person *>::iterator it = _staffList.begin(); it != _staffList.end(); it++) {
-                if (*it == staff) {
-                    _staffList.erase(it);
-                    std::cout << " Staff Removed " << std::endl;
-                    return;
-                }
-            }
-            std::cout << " Staff Not Found " << std::endl;
-        };
+        static StaffList* getInstance();
+        virtual ~StaffList(){ this->_staffList.clear(); };
+        std::vector<Person *> getStaffList();
+        Person* getStaff(Person *staff);
+        int addStaff(Person *staff);
+        int removeStaff(Person *staff);
 };
 
 #endif

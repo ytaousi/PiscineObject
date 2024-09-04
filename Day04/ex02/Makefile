@@ -1,6 +1,6 @@
 NAME = ex02
 SRCS = ./main.cpp ./form.cpp ./personnel.cpp ./singetons.cpp
-FLAGS = -Wall -Wextra -Werror #-std=c++98
+FLAGS = -Wall -Wextra -Werror -std=c++98
 OBJS = $(SRCS:.cpp=.o)
 
 %.o: %.cpp

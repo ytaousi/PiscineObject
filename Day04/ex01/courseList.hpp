@@ -1,9 +1,9 @@
 #ifndef COURSELIST_HPP
 #define COURSELIST_HPP
 
-#include "singetons.hpp"
+#include "person.hpp"
 
-class CourseList : public Room
+class CourseList
 {
     private:
         std::vector<Room *> _courseList;

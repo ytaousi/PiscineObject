@@ -5,7 +5,7 @@
 int main()
 {
     // Personnel 
-    HeadMaster *headMaster = HeadMaster::getInstance();
+    //HeadMaster *headMaster = HeadMaster::getInstance();
     Secretary *secretary1 = Secretary::getInstance();
     Secretary *secretary2 = Secretary::getInstance();
     // Forms
@@ -17,6 +17,5 @@ int main()
     secretary1->createForm(Person::subscriptioncourse);
     secretary2->createForm(Person::needmoreclassroom);
 
-    headMaster->signForm(Person::coursefinished);
     return (0);
 }

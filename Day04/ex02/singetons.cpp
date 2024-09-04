@@ -1,3 +1,3 @@
 #include "singetons.hpp"
 
-Person* Person::instance = nullptr;
+Person* Person::instance = NULL;

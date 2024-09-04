@@ -1,17 +1,32 @@
 #include "studentList.hpp"
 
+StudentList* StudentList::_instance = NULL;
+
+StudentList* StudentList::getInstance()
+{
+    if (_instance == NULL)
+    {
+        _instance = new StudentList();
+    }
+    return _instance;
+}
+
 std::vector<Person *> StudentList::getStudentList()
 {
     return this->_studentList;
 }
 
-Person& StudentList::getStudent(Person* student)
+Person* StudentList::getStudent(Person* student)
 {
-    for (std::vector<Person *>::iterator it; it != _studentList.end(); it++) {
-        if (*it == student)
-            return **it;
+    for (size_t i = 0; i < _studentList.size(); i++)
+    {
+        if (_studentList[i] == student)
+        {
+            return _studentList[i];
+        }
     }
     std::cout << " Student Not Found " << std::endl;
+    return NULL;
 }
 
 int StudentList::removeStudent(Person *student)
@@ -19,7 +34,6 @@ int StudentList::removeStudent(Person *student)
     for (std::vector<Person *>::iterator it; it != _studentList.end(); it++) {
         if (*it == student) {
             _studentList.erase(it);
-            std::cout << " Student Removed " << std::endl;
            return 0;
         }
     }
@@ -29,7 +43,7 @@ int StudentList::removeStudent(Person *student)
 
 int StudentList::addStudent(Person *student)
 {
-    for (std::vector<Person *>::iterator it; it != _studentList.end(); it++)
+    for (std::vector<Person *>::iterator it = _studentList.begin() ; it != _studentList.end(); it++)
     {
         if (*it == student)
         {
@@ -38,6 +52,5 @@ int StudentList::addStudent(Person *student)
         }
     }
     this->_studentList.push_back(student);
-    std::cout << " Student Added Successfully " << std::endl;
     return 0;
 }
