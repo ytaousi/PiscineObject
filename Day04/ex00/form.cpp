@@ -1,5 +1,7 @@
 #include "form.hpp"
 
+#include <iostream>
+
 Form::Form(t_FormType p_formType)
 {
     this->_formType = p_formType;

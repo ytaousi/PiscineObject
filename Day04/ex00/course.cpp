@@ -1,5 +1,7 @@
 #include "course.hpp"
 
+#include <iostream>
+
 Course::Course(std::string p_name)
 {
     this->_name = p_name;

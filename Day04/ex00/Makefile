@@ -1,10 +1,10 @@
 NAME = ex00
-SRCS = ./main.cpp 
+SRCS = ./main.cpp ./course.cpp ./form.cpp ./person.cpp ./room.cpp
 FLAGS = -Wall -Wextra -Werror -std=c++98
 OBJS = $(SRCS:.cpp=.o)
 
 %.o: %.cpp
-	clang++ $(FLAGS) -c $< -o $@
+	g++ $(FLAGS) -c $< -o $@
 
 all: $(NAME)
 

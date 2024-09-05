@@ -1,10 +1,9 @@
 #ifndef COURSE_HPP
 #define COURSE_HPP
 
-#include "person.hpp"
-#include <iostream>
-#include <vector>
-#include <string>
+
+#include "utils.hpp"
+
 
 class Course
 {

@@ -1,15 +1,7 @@
 #ifndef FORM_HPP
 #define FORM_HPP
 
-#include <iostream>
-
-typedef enum FormType
-{
-	CourseFinished,
-	NeedMoreClassRoom,
-	NeedCourseCreation,
-	SubscriptionToCourse
-} t_FormType;
+#include "utils.hpp"
 
 class Form
 {

@@ -1,5 +1,7 @@
 #include "person.hpp"
 
+#include <iostream>
+
 Person::Person(std::string p_name)
 {
     this->_name = p_name;

@@ -1,5 +1,6 @@
 #include "room.hpp"
 
+#include <iostream>
 
 Room::Room()
 {

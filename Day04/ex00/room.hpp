@@ -1,9 +1,7 @@
 #ifndef ROOM_HPP
 #define ROOM_HPP
 
-#include "person.hpp"
-#include "course.hpp"
-#include "form.hpp"
+#include "utils.hpp"
 
 class Room
 {
