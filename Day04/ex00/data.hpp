@@ -207,7 +207,4 @@ class SubscriptionToCourseForm : public Form
 };
 
 
-
-
-
 #endif

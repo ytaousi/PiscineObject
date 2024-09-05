@@ -1,20 +1,46 @@
+#include "trains.hpp"
+#include "parser.hpp"
+
 #include <iostream>
 
-int processingRailsNetwork(char *file)
+
+int processing(char *file1, char *file2)
 {
-    (void)file;
+    Parser parser(file1, file2);
     return (1);
 }
 
+
+// void initLogger(char *railsNetwork, char *trainsModels)
+// {
+//     (void)railsNetwork;
+//     (void)trainsModels;
+// }
+
+// void initTrains(char *railsNetwork, char *trainsModels)
+// {
+//     (void)railsNetwork;
+//     (void)trainsModels;
+//     // create parser object
+// }
+
+// void lunchSimulation()
+// {
+//     // create simulation object
+// }
+
 int main(int ac, char **av)
 {
-    if (ac == 2)
+    if (ac == 3)
     {
         std::cout << "Processing RailsNetworkFile: " <<  av[1] << std::endl;
-        if (processingRailsNetwork(av[1]) == 0)
+        if (processing(av[1], av[2]) == 0)
             std::cout << "Success" << std::endl;
         else
             std::cout << "Error" << std::endl;
+        // initLogger(av[1], av[2]);
+        // initTrains(av[1], av[2]);
+        // lunchSimulation();
     }
     else
     {

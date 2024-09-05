@@ -2,52 +2,39 @@
 
 Person::Person(std::string p_name)
 {
-    this->setName(p_name);
-    this->setCurrentRoom(NULL);
+    this->_name = p_name;
+    this->_currentRoom = nullptr;
 }
 
 Person::~Person()
 {
-    ; // should review destructor
+    this->_name = "";
+    this->_currentRoom = nullptr;
 }
 
-// Getters
-std::string Person::getName() const
+Room* Person::room()
 {
-    return this->_name;
-}
-
-Room* Person::getCurrentRoom()
-{
-    return this->_currentRoom;
-}
-
-// Setters
-void Person::setName(std::string p_name)
-{
-    this->_name = p_name;
-}
-
-void Person::setCurrentRoom(Room* p_room)
-{
-    this->_currentRoom = p_room;
+    return (this->_currentRoom);
 }
 
 
 Student::Student(std::string p_name) : Person(p_name)
 {
-    ;
+    std::cout << " Student Construct " << std::endl;
 }
 
 Student::~Student()
 {
-    ; // should review destructor
+    this->setName("");
+    this->_subscribedCourse.clear();
+    std::cout << " Student Destruct " << std::endl;
 }
 
 void Student::attendClass(Classroom* p_classroom)
 {
     ;
 }
+
 
 void Student::exitClass()
 {
@@ -59,22 +46,73 @@ void Student::graduate(Course* p_course)
     ;
 }
 
-std::vector<Course *> Student::getSubscribedCourse()
+Staff::Staff(std::string p_name) : Person(p_name)
 {
-    return this->_subscribedCourse;
+    ;
 }
 
-int Student::subscribeCourse(Course* p_course)
+Staff::~Staff()
 {
-    for (std::vector<Course *>::iterator it = this->_subscribedCourse.begin(); it != this->_subscribedCourse.end(); it++)
-    {
-        if (*it == p_course)
-        {
-            std::cout << " Student Already Subscribed to this Course " << std::endl;
-            return 0;
-        }
-    }
-    this->_subscribedCourse.push_back(p_course);
-    std::cout << " Student Subscribed Successfully to this Course " << std::endl;
-    return 1;
+    this->setName("");
+    std::cout << " Staff Destruct " << std::endl;
+}
+
+void Staff::sign(Form* p_form)
+{
+    ;
+}
+
+Headmaster::Headmaster(std::string p_name) : Staff(p_name)
+{
+    ;
+}
+
+Headmaster::~Headmaster()
+{
+    this->setName("");
+    this->_formToValidate.clear();
+    std::cout << " Headmaster Destruct " << std::endl;
+}
+
+void Headmaster::receiveForm(Form* p_form)
+{
+    ;
+}
+
+
+Secretary::Secretary(std::string p_name) : Staff(p_name)
+{
+    ;
+}
+
+Secretary::~Secretary()
+{
+    this->setName("");
+    std::cout << " Secretary Destruct " << std::endl;
+}
+
+Professor::Professor(std::string p_name) : Staff(p_name)
+{
+    ;
+}
+
+Professor::~Professor()
+{
+    this->setName("");
+    std::cout << " Professor Destruct " << std::endl;
+}
+
+void Professor::assignCourse(Course* p_course)
+{
+    ;
+}
+
+void Professor::doClass()
+{
+    ;
+}
+
+void Professor::closeCourse()
+{
+    ;
 }

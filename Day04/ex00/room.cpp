@@ -1,74 +1,96 @@
 #include "room.hpp"
 
-int Room::_ID = 0;
 
 Room::Room()
 {
-    this->setRoomID(++_ID);
+    this->ID = 0;
+    std::cout << " Room Construct " << std::endl;
 }
 
 Room::~Room()
 {
-    ;
+    std::cout << " Room Destruct " << std::endl;
 }
 
-// Getters
-Course* Room::getCurrentCourse()
+bool Room::canEnter(Person* p_person)
 {
-    return this->_currentCourse;
+    (void)p_person;
+    std::cout << " Room canEnter function called" << std::endl;
 }
 
-int Room::getRoomID()
+void Room::enter(Person* p_person)
 {
-    return this->_roomID;
+    (void)p_person;
+    std::cout << " Room enter function called" << std::endl;
 }
 
-std::vector<Person*> Room::getOccupants()
+
+void Room::exit(Person* p_person)
 {
-    return this->_occupants;
+    (void)p_person;
+    std::cout << " Room exit function called" << std::endl;
 }
 
-int Room::getMaximumNumberOfOccupants()
+void printOccupant()
 {
-    return this->_maximumNumberOfOccupants;
+    std::cout << " Room printOccupant function called" << std::endl;
 }
 
-// Setters
-void Room::setRoomID(int p_roomID)
+
+Classroom::Classroom()
 {
-    this->_roomID = p_roomID;
-}
-void Room::addPersonToRoomOccupants(std::vector<Person*> p_occupants)
-{
-    for (std::vector<Person *>::iterator it = p_occupants.begin(); it != p_occupants.end(); it++)
-    {
-        ;
-    }
+    std::cout << " Classroom Construct " << std::endl;
 }
 
-void Room::setMaximumNumberOfOccupants(int p_maximumNumberOfOccupants)
+Classroom::~Classroom()
 {
-    this->_maximumNumberOfOccupants = p_maximumNumberOfOccupants;
+    std::cout << " Classroom Destruct " << std::endl;
 }
 
-//
-
-bool Room::canEnter(Person *p_person)
+void Classroom::assignCourse(Course* p_course)
 {
-
+    (void)p_course;
+    std::cout << " Classroom assignCourse function called" << std::endl;
 }
 
-void Room::enter(Person *p_person)
+SecretarialOffice::SecretarialOffice()
 {
-    ;
+    std::cout << " SecretarialOffice Construct " << std::endl;
 }
 
-void Room::exit(Person *p_person)
+SecretarialOffice::~SecretarialOffice()
 {
-    ;
+    std::cout << " SecretarialOffice Destruct " << std::endl;
 }
 
-void Room::printOccupant()
+
+HeadmasterOffice::HeadmasterOffice()
 {
-    ;
+    std::cout << " HeadmasterOffice Construct " << std::endl;
+}
+
+HeadmasterOffice::~HeadmasterOffice()
+{
+    std::cout << " HeadmasterOffice Destruct " << std::endl;
+}
+
+
+StaffRestRoom::StaffRestRoom()
+{
+    std::cout << " StaffRestRoom Construct " << std::endl;
+}
+
+StaffRestRoom::~StaffRestRoom()
+{
+    std::cout << " StaffRestRoom Destruct " << std::endl;
+}
+
+Courtyard::Courtyard()
+{
+    std::cout << " Courtyard Construct " << std::endl;
+}
+
+Courtyard::~Courtyard()
+{
+    std::cout << " Courtyard Destruct " << std::endl;
 }

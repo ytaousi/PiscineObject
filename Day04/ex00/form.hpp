@@ -1,25 +1,24 @@
 #ifndef FORM_HPP
 #define FORM_HPP
 
-enum class FormType
+#include <iostream>
+
+typedef enum FormType
 {
 	CourseFinished,
 	NeedMoreClassRoom,
 	NeedCourseCreation,
 	SubscriptionToCourse
-};
+} t_FormType;
 
 class Form
 {
     private:
-        FormType _formType;
+        t_FormType _formType;
 
     public:
-        Form(FormType p_formType)
-        {
-
-        }
-
+        Form(t_FormType p_formType);
+        virtual ~Form();
         virtual void execute() = 0;
 };
 
@@ -28,6 +27,8 @@ class CourseFinishedForm : public Form
     private:
 
     public:
+        CourseFinishedForm();
+        ~CourseFinishedForm();
         void execute();
 };
 
@@ -36,6 +37,8 @@ class NeedMoreClassRoomForm : public Form
     private:
 
     public:
+        NeedMoreClassRoomForm();
+        ~NeedMoreClassRoomForm();
         void execute();
 };
 
@@ -44,6 +47,8 @@ class NeedCourseCreationForm : public Form
     private:
 
     public:
+        NeedCourseCreationForm();
+        ~NeedCourseCreationForm();
         void execute();
 };
 
@@ -52,6 +57,8 @@ class SubscriptionToCourseForm : public Form
     private:
 
     public:
+        SubscriptionToCourseForm();
+        ~SubscriptionToCourseForm();
         void execute();
 };
 

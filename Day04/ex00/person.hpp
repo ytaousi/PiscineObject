@@ -1,16 +1,7 @@
 #ifndef PERSON_HPP
 #define PERSON_HPP
 
-#include <string>
-#include <vector>
-#include <iostream>
-
-class Room;
-class Course;
-class Form;
-class Classroom;
-enum class FormType;
-
+#include "room.hpp"
 
 class Person
 {
@@ -19,11 +10,9 @@ class Person
         Room* _currentRoom;
     public:
         Person(std::string p_name);
-        std::string getName() const;
-        Room* getCurrentRoom();
         void setName(std::string p_name);
-        void setCurrentRoom(Room* p_room);
         ~Person();
+        Room* room();
 };
 
 class Student : public Person
@@ -33,12 +22,10 @@ class Student : public Person
 
     public:
         Student(std::string p_name);
+        ~Student();
         void attendClass(Classroom* p_classroom);
         void exitClass();
         void graduate(Course* p_course);
-        std::vector<Course *> getSubscribedCourse();
-        int subscribeCourse(Course* p_course);
-        ~Student();
 };
 
 class Staff : public Person
@@ -46,18 +33,9 @@ class Staff : public Person
     private:
 
     public:
+        Staff(std::string p_name);
+        ~Staff();
         void sign(Form* p_form);
-};
-
-class Professor : public Staff
-{
-    private:
-        Course* _currentCourse;
-
-    public:
-        void assignCourse(Course* p_course);
-        void doClass();
-        void closeCourse();
 };
 
 class Headmaster : public Staff
@@ -66,6 +44,8 @@ class Headmaster : public Staff
         std::vector<Form*> _formToValidate;
         
     public:
+        Headmaster(std::string p_name);
+        ~Headmaster();
         void receiveForm(Form* p_form);
 };
 
@@ -74,8 +54,23 @@ class Secretary : public Staff
     private:
 
     public:
+        Secretary(std::string p_name);
+        ~Secretary();
         Form* createForm(FormType p_formType);
         void archiveForm();
+};
+
+class Professor : public Staff
+{
+    private:
+        Course* _currentCourse;
+
+    public:
+        Professor(std::string p_name);
+        ~Professor();
+        void assignCourse(Course* p_course);
+        void doClass();
+        void closeCourse();
 };
 
 #endif

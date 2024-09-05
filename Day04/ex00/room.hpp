@@ -1,35 +1,23 @@
 #ifndef ROOM_HPP
 #define ROOM_HPP
 
-#include <vector>
-#include <iostream>
-
-class Person;
-class Course;
-class Form;
+#include "person.hpp"
+#include "course.hpp"
+#include "form.hpp"
 
 class Room
 {
     private:
-        static int              _ID;
-        int                     _roomID;
-        std::vector<Person*>    _occupants;
-        int                     _maximumNumberOfOccupants;
-        Course*                 _currentCourse;
+        long long ID;
+        std::vector<Person*> _occupants;
     public:
         Room();
+        virtual ~Room();
         bool canEnter(Person*);
         void enter(Person*);
         void exit(Person*);
-        Course* getCurrentCourse();
-        std::vector<Person*> getOccupants();
-        int getRoomID();
-        int getMaximumNumberOfOccupants();
-        void setRoomID(int p_roomID);
-        void addPersonToRoomOccupants(std::vector<Person*> p_occupants);
-        void setMaximumNumberOfOccupants(int p_maximumNumberOfOccupants);
+        
         void printOccupant();
-        ~Room();
 };
 
 class Classroom : public Room
@@ -38,6 +26,7 @@ class Classroom : public Room
         Course* _currentRoom;
     public:
         Classroom();
+        ~Classroom();
         void assignCourse(Course* p_course);
 };
 
@@ -46,24 +35,32 @@ class SecretarialOffice: public Room
     private:
         std::vector<Form*> _archivedForms;
     public:
+        SecretarialOffice();
+        ~SecretarialOffice();
 };
 
 class HeadmasterOffice : public Room
 {
     private:
     public:
+        HeadmasterOffice();
+        ~HeadmasterOffice();
 };
 
 class StaffRestRoom : public Room
 {
     private:
     public:
+        StaffRestRoom();
+        ~StaffRestRoom();
 };
 
 class Courtyard : public Room
 {
     private:
     public:
+        Courtyard();
+        ~Courtyard();
 };
 
 #endif

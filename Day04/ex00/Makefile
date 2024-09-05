@@ -1,5 +1,5 @@
 NAME = ex00
-SRCS = ./main.cpp ./course.cpp ./person.cpp
+SRCS = ./main.cpp 
 FLAGS = -Wall -Wextra -Werror -std=c++98
 OBJS = $(SRCS:.cpp=.o)
 
