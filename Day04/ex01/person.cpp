@@ -12,6 +12,7 @@ Person::~Person()
     this->_professionID = NONE;
 }
 
+
 std::string& Person::getName()
 {
     return _name;

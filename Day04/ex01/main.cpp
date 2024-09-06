@@ -1,96 +1,97 @@
-#include "person.hpp"
-#include "room.hpp"
-
-#include "studentList.hpp"
-#include "staffList.hpp"
-#include "roomList.hpp"
+#include "singleton.hpp"
 
 int main()
 {
-    Person *student1 = new Person("Jhon Doe", STUDENT);
-    Person *student2 = new Person("Solomon Kane", STUDENT);;
-    Person *student3 = new Person("BouWdina", STUDENT);
-    Person *staff1 = new Person("Yorick", STAFF);
-    Person *staff2 = new Person("Elie", STAFF);
-    Person *staff3 = new Person("Nirina", STAFF);
-    //
+    std::cout << "-------------------" << std::endl;
+    RoomList *roomList = RoomList::getInstance();
+    CourseList *courseList = CourseList::getInstance();
+    StaffList *staffList = StaffList::getInstance();
+    StudentList *studentList = StudentList::getInstance();
+
     Room *room1 = new Room(LIBRARY);
     Room *room2 = new Room(PROGRAMMING);
     Room *room3 = new Room(PLAYGROUND);
-    //
-    StudentList *studentList = StudentList::getInstance();
-    StaffList *staffList = StaffList::getInstance();
-    RoomList *roomList = RoomList::getInstance();
+
+    Room *course1 = new Room(HEALTH_CARE);
+    Room *course2 = new Room(PROGRAMMING);
+    Room *course3 = new Room(HEALTH_CARE);
+
+    Person *student1 = new Person("John", STUDENT);
+    Person *student2 = new Person("yassir", STUDENT);
+    Person *student3 = new Person("yolyo", STUDENT);
+
+    Person *staff1 = new Person("John", STAFF);
+    Person *staff2 = new Person("Yori", STAFF);
+    Person *staff3 = new Person("Random",STAFF);
+
+    roomList->addObject(room1);
+    roomList->addObject(room2);
+    roomList->addObject(room3);
+
+    courseList->addObject(course1);
+    courseList->addObject(course2);
+    courseList->addObject(course3);
+
+    staffList->addObject(staff1);
+    staffList->addObject(staff2);
+    staffList->addObject(staff3);
+
+    studentList->addObject(student1);
+    studentList->addObject(student2);
+    studentList->addObject(student3);
 
 
 
-    roomList->addRoom(room1);
-    roomList->addRoom(room2);
-    roomList->addRoom(room3);
+    
 
-    std::vector<Room *> rooms = roomList->getRoomList();
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    std::vector<Room *> rooms = roomList->getList();
+    std::vector<Room *> courses = courseList->getList();
+    std::vector<Person *> staffs = staffList->getList();
+    std::vector<Person *> students = studentList->getList();
 
-    for (size_t i = 0; i < rooms.size(); i++) {
-        std::cout << "RoomID : " << rooms[i]->getRoomID() << std::endl;
-        std::cout << "RoomType : " << rooms[i]->getRoomType() << std::endl;
+
+    std::cout << "---------Available Rooms-----------" << std::endl;
+    for (size_t i = 0 ; i < rooms.size(); i++) {
+        std::cout << "RoomID : " << rooms[i]->getID() << std::endl;
+        std::cout << "RoomType : " << rooms[i]->getType() << std::endl;
     }
-
-    roomList->removeRoom(room1);
-
-    rooms = roomList->getRoomList();
-
-    for (size_t i = 0; i < rooms.size(); i++) {
-        std::cout << "RoomID : " << rooms[i]->getRoomID() << std::endl;
-        std::cout << "RoomType : " << rooms[i]->getRoomType() << std::endl;
-    }
-
     std::cout << "-------------------" << std::endl;
-
-
-    student1->setName("John Doe");
-    student1->setProfession(STUDENT);
-    student2->setName("Solomon Kane");
-    student2->setProfession(STUDENT);
-    student3->setName("BouWdina");
-    student3->setProfession(STUDENT);
-    
-    studentList->addStudent(student1);
-    studentList->addStudent(student2);
-    studentList->addStudent(student3);
-
-    staff1->setName("Yorick");
-    staff1->setProfession(STAFF);
-    staff2->setName("Elie");
-    staff2->setProfession(STAFF);
-    staff3->setName("nnNirina");
-    staff3->setProfession(STAFF);
-
-    staffList->addStaff(staff1);
-    staffList->addStaff(staff2);
-    staffList->addStaff(staff3);
-
-
-    std::vector<Person *> students = studentList->getStudentList();
-    std::vector<Person *> staffs = staffList->getStaffList();
-
-    
-    for (size_t i = 0; i < students.size(); i++) {
-        std::cout << students[i]->getName() << std::endl;
+    std::cout << "----------Courses Held---------" << std::endl;
+    for (size_t i = 0 ; i < courses.size(); i++) {
+        std::cout << "RoomID : " << courses[i]->getID() << std::endl;
+        std::cout << "CourseType : " << courses[i]->getType() << std::endl;
     }
-
-    
-
-    for (std::vector<Person *>::iterator it = staffs.begin(); it != staffs.end(); it++) {
-        std::cout << (*it)->getName() << std::endl;
-    }
-
     std::cout << "-------------------" << std::endl;
-    Person *student = studentList->getStudent(student1);
-
-    std::cout << student->getName() << std::endl;
-    student->setName("Yassir");
+    for (size_t i = 0 ; i < staffs.size(); i++) {
+        std::cout << "Occupant Name : " << staffs[i]->getName() << std::endl;
+        std::cout << staffs[i]->getProfession() << std::endl;
+    }
+    for (size_t i = 0; i < students.size(); i++)
+    {
+        std::cout << "Occupant Name : " << students[i]->getName() << std::endl;
+        std::cout << students[i]->getProfession() << std::endl;
+    }
 
     
+
+
+    delete course1;
+    delete course2;
+    delete course3;
     delete student1;
     delete student2;
     delete student3;

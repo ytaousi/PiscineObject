@@ -22,10 +22,10 @@ class Room {
         t_module        _roomType;
     public:
         Room(t_module roomType);
-        int getRoomID();
-        std::string getRoomType();
-        void setRoomName(std::string name);
-        std::string getRoomName();
+        int getID();
+        std::string getType();
+        void setName(std::string name);
+        std::string getName();
 };
 
 #endif

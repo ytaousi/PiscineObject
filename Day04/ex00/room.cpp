@@ -17,6 +17,7 @@ bool Room::canEnter(Person* p_person)
 {
     (void)p_person;
     std::cout << " Room canEnter function called" << std::endl;
+    return (true);
 }
 
 void Room::enter(Person* p_person)

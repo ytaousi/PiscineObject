@@ -6,14 +6,14 @@ Room::Room(t_module p_roomType)
 {
     this->_roomID = _uniqueID++;
     this->_roomType = p_roomType;
-    this->_name = getRoomType();
+    this->_name = getType();
 }
-int Room::getRoomID()
+int Room::getID()
 {
     return this->_roomID;
 }
 
-std::string Room::getRoomType()
+std::string Room::getType()
 {
     if (this->_roomType == PRINCIPALE_OFFICE)
         return "PRINCIPALE_OFFICE";
@@ -33,12 +33,12 @@ std::string Room::getRoomType()
         return "Unknown Room";
 }
 
-void Room::setRoomName(std::string p_name)
+void Room::setName(std::string p_name)
 {
     this->_name = p_name;
 }
 
-std::string Room::getRoomName()
+std::string Room::getName()
 {
     return this->_name;
 }

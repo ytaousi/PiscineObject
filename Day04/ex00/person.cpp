@@ -5,13 +5,13 @@
 Person::Person(std::string p_name)
 {
     this->_name = p_name;
-    this->_currentRoom = nullptr;
+    this->_currentRoom = NULL;
 }
 
 Person::~Person()
 {
     this->_name = "";
-    this->_currentRoom = nullptr;
+    this->_currentRoom = NULL;
 }
 
 Room* Person::room()
@@ -19,6 +19,10 @@ Room* Person::room()
     return (this->_currentRoom);
 }
 
+void Person::setName(std::string p_name)
+{
+    this->_name = p_name;
+}
 
 Student::Student(std::string p_name) : Person(p_name)
 {
@@ -34,18 +38,20 @@ Student::~Student()
 
 void Student::attendClass(Classroom* p_classroom)
 {
-    ;
+    (void)p_classroom;
+    std::cout << " Student attendClass function called" << std::endl;
 }
 
 
 void Student::exitClass()
 {
-    ;
+    std::cout << " Student exitClass function called" << std::endl;
 }
 
 void Student::graduate(Course* p_course)
 {
-    ;
+    (void)p_course;
+    std::cout << " Student graduate function called" << std::endl;
 }
 
 Staff::Staff(std::string p_name) : Person(p_name)
@@ -61,7 +67,8 @@ Staff::~Staff()
 
 void Staff::sign(Form* p_form)
 {
-    ;
+    (void)p_form;
+    std::cout << " Staff sign function called" << std::endl;
 }
 
 Headmaster::Headmaster(std::string p_name) : Staff(p_name)
@@ -78,7 +85,8 @@ Headmaster::~Headmaster()
 
 void Headmaster::receiveForm(Form* p_form)
 {
-    ;
+    (void)p_form;
+    std::cout << " Headmaster receiveForm function called" << std::endl;
 }
 
 
@@ -106,15 +114,16 @@ Professor::~Professor()
 
 void Professor::assignCourse(Course* p_course)
 {
-    ;
+    (void)p_course;
+    std::cout << " Professor assignCourse function called" << std::endl;
 }
 
 void Professor::doClass()
 {
-    ;
+    std::cout << " Professor doClass function called" << std::endl;
 }
 
 void Professor::closeCourse()
 {
-    ;
+    std::cout << " Professor closeCourse function called" << std::endl;
 }
