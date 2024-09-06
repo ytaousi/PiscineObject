@@ -1,46 +1,63 @@
-#ifndef FORM_HPP
-#define FORM_HPP
+#ifndef FORMS_HPP
+#define FORMS_HPP
 
-#include "singetons.hpp"
+typedef enum FormType
+{
+	CourseFinished,
+	NeedMoreClassRoom,
+	NeedCourseCreation,
+	SubscriptionToCourse
+} t_FormType;
+
+class Form
+{
+    private:
+        t_FormType _formType;
+
+    public:
+        Form(t_FormType p_formType);
+        virtual ~Form();
+        virtual void execute() = 0;
+};
 
 class CourseFinishedForm : public Form
 {
     private:
+
     public:
-        static CourseFinishedForm* getInstance();
+        CourseFinishedForm();
         ~CourseFinishedForm();
         void execute();
-        void fillForm();
 };
 
 class NeedMoreClassRoomForm : public Form
 {
     private:
+
     public:
-        static NeedMoreClassRoomForm* getInstance();
+        NeedMoreClassRoomForm();
         ~NeedMoreClassRoomForm();
         void execute();
-        void fillForm();
 };
 
 class NeedCourseCreationForm : public Form
 {
     private:
+
     public:
-        static NeedCourseCreationForm* getInstance();
+        NeedCourseCreationForm();
         ~NeedCourseCreationForm();
         void execute();
-        void fillForm();
 };
 
 class SubscriptionToCourseForm : public Form
 {
     private:
+
     public:
-        static SubscriptionToCourseForm* getInstance();
+        SubscriptionToCourseForm();
         ~SubscriptionToCourseForm();
         void execute();
-        void fillForm();
 };
 
 #endif

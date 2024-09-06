@@ -8,8 +8,6 @@ class Singleton
 {
     protected:
         Singleton() {};
-        Singleton(const Singleton&) = delete;
-        Singleton& operator=(const Singleton&) = delete;
         static Singleton* instance;
 
     public:
