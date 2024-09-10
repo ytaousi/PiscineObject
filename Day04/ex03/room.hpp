@@ -1,6 +1,7 @@
 #ifndef ROOM_HPP
 #define ROOM_HPP
 
+#include <string>
 
 template <typename T>
 class Room
@@ -16,7 +17,7 @@ class Room
             this->_roomID = _uniqueID++;
             this->_roomName = "";
         };
-        ~Room();
+        ~Room(){};
         void setRoomName(std::string p_name) {
             this->_roomName = p_name;
         };

@@ -9,12 +9,13 @@ class Headmaster
         ConcreteMediator* _mediator;
         std::vector<Form *> _formList;
     public:
-        Headmaster() : _mediator(new ConcreteMediator(new Component1(), new Component2())) {
+        Headmaster() : _mediator(new ConcreteMediator(new Component1(), new Component2())) {// new ConcreteMediator(new Component1(), new Component2())
             std::cout << "Headmaster Created" << std::endl;
         };
         ~Headmaster() {};
         int requestForm(Form* _form){
             (void)_form;
+            return 0;
         }
         int signForm(Form * _form) {
             if (_form->getIsFilled() == 0)
@@ -46,6 +47,12 @@ class Headmaster
         }
         ConcreteMediator* getMediator() {
             return this->_mediator;
+        }
+        Component1* getComponent1() {
+            return this->_mediator->getComponent1();
+        }
+        Component2* getComponent2() {
+            return this->_mediator->getComponent2();
         }
 };
 

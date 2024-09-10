@@ -5,21 +5,12 @@
 #include <iostream>
 #include <string>
 
-/**
- * The Mediator interface declares a method used by components to notify the
- * mediator about various events. The Mediator may react to these events and
- * pass the execution to other components.
- */
 class BaseComponent;
 class Mediator {
     public:
         virtual void Notify(BaseComponent *sender, std::string event) const = 0;
 };
 
-/**
- * The Base Component provides the basic functionality of storing a mediator's
- * instance inside component objects.
- */
 class BaseComponent {
     protected:
         Mediator *mediator_;
@@ -31,47 +22,6 @@ class BaseComponent {
         };
 };
 
-// HeadMaster --> Secretary --> Professor --> Student
-//        Graduation Form Diagram
-//            -----------------> Pofessor --> Student
-//                            Graduation Request
-//            <----------------- Pofessor
-//        FormRequest
-//            --> Secretary
-//            <--
-//        FillFormRequest
-//                             <> Fill  
-//            -----------------> Pofessor
-//            <----------------- Pofessor
-//                                SignFormRequest
-//Sign n Exec <>
-
-//        SubscriptionToCourseForm Diagram
-//      HeadMaster   Secretary    Professor    Student
-
-// HeadMaster -----------------> Pofessor --> Student
-//                        CourseSubscriptionRequest
-//            <----------------- Pofessor 
-//        FormRequest
-//            --> Secretary
-//            <--
-//        FillFormRequest
-//            -----------------> Pofessor
-//                             <> Fill
-//            <----------------- Pofessor
-//                                SignFormRequest
-//            <> Sign
-//            -----------------> Pofessor
-//                               Pofessor --> Student
-
-
-// CourseSubscriptionRequest - FormRequest - FillFormRequest -SignFormRequest
-// GraduationRequest - FormRequest - FillFormRequest -SignFormRequest
-
-/**
- * Concrete Components implement various functionality. They don't depend on
- * other components. They also don't depend on any concrete mediator classes.
- */
 class Component1 : public BaseComponent {
  public:
   void CourseSubscriptionRequest() {
@@ -89,6 +39,9 @@ class Component1 : public BaseComponent {
   void SignFormRequest() {
     std::cout << "Component 1 does D.\n";
     this->mediator_->Notify(this, "");
+  }
+  void CheckCheck1() {
+    std::cout << "CheckCheck1" << std::endl;
   }
 };
 
@@ -111,30 +64,47 @@ class Component2 : public BaseComponent {
     std::cout << "Component 2 does H.\n";
     this->mediator_->Notify(this, "");
   }
+  void CheckCheck2() {
+    std::cout << "CheckCheck2" << std::endl;
+  }
 };
 
 
-
-
-
-/**
- * Concrete Mediators implement cooperative behavior by coordinating several
- * components.
- */
 class ConcreteMediator : public Mediator {
-    std::vector<FormCreator *> _formList;
+    std::vector<Form *> _formList; // (-,-)
  private:
   Component1 *courseSubscriptionForm;
   // Component2 *courseRequestForm;
   Component2 *graduationForm;
 
  public:
-  ConcreteMediator(Component1 *c1, Component2 *c2) : graduationForm(c1), courseRequestForm(c2){
+  ConcreteMediator(Component1 *c1, Component2 *c2) : courseSubscriptionForm(c1), graduationForm(c2) {
     this->graduationForm->set_mediator(this);
     this->courseSubscriptionForm->set_mediator(this);
   }
+  void addForm(Form *p_form) {
+    this->_formList.push_back(p_form);
+  }
+  std::vector<Form *> getFormList() {
+    return this->_formList;
+  }
+  Component1 *getComponent1()  {
+    return this->courseSubscriptionForm;
+  }
+  Component2 *getComponent2()  {
+    return this->graduationForm;
+  }
   void Notify(BaseComponent *sender, std::string event) const  {
     (void)sender;
+    if (event == "AttendClass") {
+      std::cout << "Mediator reacts on A and triggers following operations:\n";
+    }
+    if (event == "TeachCourse") {
+      std::cout << "Mediator reacts on A and triggers following operations:\n";
+    }
+    if (event == "FollowClass") {
+      std::cout << "Mediator reacts on A and triggers following operations:\n";
+    }
     if (event == "CourseSubscriptionRequest") {
       std::cout << "Mediator reacts on A and triggers following operations:\n";
     }
@@ -147,7 +117,8 @@ class ConcreteMediator : public Mediator {
     if (event == "SignFormCourseRequest") {
       std::cout << "Mediator reacts on C and triggers following operations:\n";
     }
-    if (event == "GraduationForm") {
+
+    if (event == "GraduationRequest") {
       std::cout << "Mediator reacts on D and triggers following operations:\n";
       this->graduationForm->GraduationFormRequest();
     }
