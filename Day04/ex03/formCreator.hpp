@@ -1,8 +1,9 @@
-#ifndef FORMS_HPP
-#define FORMS_HPP
+#ifndef FORMCREATOR_HPP
+#define FORMCREATOR_HPP
 
 #include <iostream>
 #include <vector>
+
 typedef enum FormType
 {
 	CourseFinished = 0,
@@ -174,6 +175,76 @@ class SubscriptionToCourseForm : public Form
                 return;
             }
             std::cout << "form SubscriptionToCourseForm IS_FILLED AND IS_SIGNED  executing ....." << std::endl;
+        };
+        
+};
+
+class FormCreator
+{
+    private:
+    public:
+        FormCreator(){};
+        virtual ~FormCreator(){};
+        virtual Form* FactoryMethod() = 0;
+        virtual Form* createForm() = 0;
+};
+
+class CourseFinishedFormCreator1 : public FormCreator
+{
+    private:
+    public:
+        Form* FactoryMethod() {
+            return new CourseFinishedForm();
+        };
+        Form* createForm(){
+            Form* form = this->FactoryMethod();
+            return form;
+            //form->execute();
+        };
+};
+
+class NeedMoreClassRoomFormCreator1 : public FormCreator
+{
+    private:
+    public:
+        Form* FactoryMethod() {
+            return new NeedMoreClassRoomForm();
+        };
+        Form* createForm(){
+            Form* form = this->FactoryMethod();
+            //form->execute();
+            return form;
+        };
+        // Form getter
+};
+
+class NeedCourseCreationFormCreator1 : public FormCreator
+{
+    private:
+
+    public:
+        Form* FactoryMethod() {
+            return new NeedCourseCreationForm();
+        };
+        Form* createForm(){
+            Form* form = this->FactoryMethod();
+            //form->execute();
+            return form;
+        };
+        
+};
+
+class SubscriptionToCourseFormCreator1 : public FormCreator
+{
+    private:
+    public:
+        Form* FactoryMethod() {
+            return new SubscriptionToCourseForm();
+        };
+        Form* createForm(){
+            Form* form = this->FactoryMethod();
+            //form->execute();
+            return form;
         };
         
 };
