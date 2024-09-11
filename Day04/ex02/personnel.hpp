@@ -24,7 +24,6 @@ class CourseFinishedFormCreator1 : public FormCreator
         Form* createForm(){
             Form* form = this->FactoryMethod();
             return form;
-            //form->execute();
         };
 };
 
@@ -37,7 +36,6 @@ class NeedMoreClassRoomFormCreator1 : public FormCreator
         };
         Form* createForm(){
             Form* form = this->FactoryMethod();
-            //form->execute();
             return form;
         };
         // Form getter
@@ -53,7 +51,6 @@ class NeedCourseCreationFormCreator1 : public FormCreator
         };
         Form* createForm(){
             Form* form = this->FactoryMethod();
-            //form->execute();
             return form;
         };
         
@@ -68,7 +65,6 @@ class SubscriptionToCourseFormCreator1 : public FormCreator
         };
         Form* createForm(){
             Form* form = this->FactoryMethod();
-            //form->execute();
             return form;
         };
         
@@ -85,29 +81,29 @@ class Headmaster
         int signForm(Form * _form) {
             if (_form->getIsFilled() == 0)
             {
-                std::cout << "Form [" << _form->getFormType() << "] Not Ready to be signed , need to be filled first" << std::endl;
+                std::cout << "Form [" << _form->getFormTypeString() << "] Not Ready to be signed , need to be filled first" << std::endl;
                 return 1;
             }
             else
             {
-                std::cout << "Form [" << _form->getFormType() << "] Ready to be signed" << std::endl;
+                std::cout << "Form [" << _form->getFormTypeString() << "] Ready to be signed" << std::endl;
                 _form->setIsSigned(1);
-                std::cout << "Form [" << _form->getFormType() << "] Signed" << std::endl;
+                std::cout << "Form [" << _form->getFormTypeString() << "] Signed" << std::endl;
             }
             return 0;
         }
         int executeForm(Form* _form){
             if (_form->getIsFilled() == 0)
             {
-                std::cout << "Form [" << _form->getFormType() << "] Not Ready to be executed, Need to be Filled first and then Signed" << std::endl;
+                std::cout << "Form [" << _form->getFormTypeString() << "] Not Ready to be executed, Need to be Filled first and then Signed" << std::endl;
                 return 1;
             }
             if (_form->getIsSigned() == 0)
             {
-                std::cout << "Form [" << _form->getFormType() << "] Not Ready to be executed, need to be signed first" << std::endl;
+                std::cout << "Form [" << _form->getFormTypeString() << "] Not Ready to be executed, need to be signed first" << std::endl;
                 return 1;
             }
-            std::cout << "ForM Executed Successfully by the headmaster object" << std::endl;
+            std::cout << "ForM [" << _form->getFormTypeString() << "] Executed Successfully by the headmaster object" << std::endl;
             return 0;
         }
 };
@@ -116,58 +112,43 @@ class Secretary
 {
     private:
         std::vector<Form *> formList;
-        FormCreator* _formCreator;
     public:
-        Secretary() {
-            ;
-        }
-        // Secretary(FormCreator *formCreator = nullptr) _formCreator(formCreator) { 
-        // };
+        
+        Secretary() {};
         virtual ~Secretary() {
         };
-        void createForm(t_FormType t_formType) const {
+        void createForm(t_FormType t_formType) {
             if (t_formType == CourseFinished)
             {
-                //CourseFinishedFormCreator1();
-                CourseFinishedFormCreator1 *CourseFinished = new CourseFinishedFormCreator1();
-                
-                Form *form = CourseFinished->FactoryMethod();
-                form->bestBypassForever();
-                // get a const value of the object to pushback to the list
-                
+                CourseFinishedFormCreator1 *courseFinished = new CourseFinishedFormCreator1();
+                Form *form = courseFinished->FactoryMethod();
+                formList.push_back(form);
             }
             else if (t_formType == NeedMoreClassRoom)
             {
-                //CourseFinishedFormCreator1();
-                NeedMoreClassRoomFormCreator1 *NeedMoreClassRoom = new NeedMoreClassRoomFormCreator1();
-                
-                Form *form = NeedMoreClassRoom->FactoryMethod();
-                form->bestBypassForever();
-                //NeedMoreClassRoom->FactoryMethod();
-                
+                NeedMoreClassRoomFormCreator1 *needMoreClassRoom = new NeedMoreClassRoomFormCreator1();
+                Form *form = needMoreClassRoom->FactoryMethod();
+                formList.push_back(form);
             }
             else if (t_formType == NeedCourseCreation)
             {
-               NeedCourseCreationFormCreator1 *NeedCourseCreation = new NeedCourseCreationFormCreator1();
-                
-                Form *form = NeedCourseCreation->FactoryMethod();
-                form->bestBypassForever();
-                
-                //NeedCourseCreation->FactoryMethod();
-                 
+                NeedCourseCreationFormCreator1 *needCourseCreation = new NeedCourseCreationFormCreator1();
+                Form *form = needCourseCreation->FactoryMethod();
+                formList.push_back(form);
             }
             else if (t_formType == SubscriptionToCourse)
             {
-                SubscriptionToCourseFormCreator1 *SubscriptionToCourse = new SubscriptionToCourseFormCreator1();
-                
-                Form *form = SubscriptionToCourse->FactoryMethod();
-                form->bestBypassForever();
-                //SubscriptionToCourse->createForm();
-                
+                SubscriptionToCourseFormCreator1 *subscriptionToCourse = new SubscriptionToCourseFormCreator1();
+                Form *form = subscriptionToCourse->FactoryMethod();
+                formList.push_back(form);                
             }
         }
         std::vector<Form *> getList() {
             return formList;
+        }
+        void fillForm(Form *form) {
+            std::cout << "Filling [" << form->getFormTypeString() << "] with necessary information" << std::endl;
+            form->setIsFilled(1);
         }
 
 };

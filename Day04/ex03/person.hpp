@@ -5,7 +5,7 @@
 #include <vector>
 #include <string>
 
-# define GRADUATION 7
+# define GRADUATION 2
 
 class Person
 {
@@ -75,10 +75,15 @@ class Student : public Person
             {
                 for (size_t i = 0; i < subscribedCourses.size(); i++)
                 {
-                    std::cout << i << std::endl;
+                    if (subscribedCourses[i] == p_classroom)
+                    {
+                        std::cout << " Ready to start Learning about this Course " << std::endl;
+                        return 0;
+                    }
                 }
             }
-            return 0;
+            std::cout << "I am not subscribed to any course" << std::endl;
+            return 1;
         };
         void graduate(Course * p_course) { (void )p_course; };
 };

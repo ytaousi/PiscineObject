@@ -62,6 +62,17 @@ class Form
         void setIsFilled(int p_isFilled) {
             this->_isFilled = p_isFilled;
         };
+        std::string getFormTypeString(){
+            if (this->_formType == CourseFinished)
+                return "CourseFinished";
+            if (this->_formType == NeedMoreClassRoom)
+                return "NeedMoreClassRoom";
+            if (this->_formType == NeedCourseCreation)
+                return "NeedCourseCreation";
+            if (this->_formType == SubscriptionToCourse)
+                return "SubscriptionToCourse";
+            return "invalidForm";
+        };
 };
 
 class CourseFinishedForm : public Form
@@ -75,7 +86,7 @@ class CourseFinishedForm : public Form
         };
         ~CourseFinishedForm(){};
         void bestBypassForever(){
-            std::cout << "Form : CourseFinishedForm Successfully Created" << std::endl;
+            std::cout << "CourseFinishedForm bestBypassForever" << std::endl;
         };
         void execute() {
             if (getIsFilled() == 0)
@@ -104,7 +115,7 @@ class NeedMoreClassRoomForm : public Form
         };
         ~NeedMoreClassRoomForm(){};
         void bestBypassForever(){
-            std::cout << "Form : NeedMoreClassRoom Successfully Created" << std::endl;
+            std::cout << "NeedMoreClassRoomForm bestBypassForever" << std::endl;
         };
         void execute(){
             if (getIsFilled() == 0)
@@ -132,7 +143,7 @@ class NeedCourseCreationForm : public Form
         };
         ~NeedCourseCreationForm(){};
         void bestBypassForever(){
-            std::cout << "Form : NeedCourseCreation Successfully Created" << std::endl;
+            std::cout << "NeedCourseCreationForm bestBypassForever" << std::endl;
         };
         void execute(){
             if (getIsFilled() == 0)
@@ -160,7 +171,7 @@ class SubscriptionToCourseForm : public Form
         };
         ~SubscriptionToCourseForm(){};
         void bestBypassForever(){
-            std::cout << "Form : SubscriptionToCourseForm Successfully Created" << std::endl;
+            std::cout << "SubscriptionToCourseForm bestBypassForever" << std::endl;
         };
         void execute(){
             if (getIsFilled() == 0)
