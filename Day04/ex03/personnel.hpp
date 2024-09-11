@@ -10,8 +10,7 @@ class Headmaster
         std::vector<Form *> _formList;
         std::string         _name;
     public:
-        Headmaster() : _mediator(new ConcreteMediator(new Component1(), new Component2())) {// new ConcreteMediator(new Component1(), new Component2())
-            std::cout << "Headmaster Created" << std::endl;
+        Headmaster() : _mediator(new ConcreteMediator(new Component1(), new Component2(), new TweakedMediator())) {// new ConcreteMediator(new Component1(), new Component2())
         };
         ~Headmaster() {};
         int requestForm(Form* _form){

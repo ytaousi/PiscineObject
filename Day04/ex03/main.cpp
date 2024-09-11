@@ -25,23 +25,27 @@ int main()
         formList[i]->execute();
     }
 
-    std::cout << "--------------------------------" << std::endl;
-
-    // Professor *professor1 = new Professor();
-    // Professor *professor2 = new Professor();
-    // Student *student1 = new Student();
-    // Student *student2 = new Student();
-
     std::cout << "---------------------------------" << std::endl;
 
     Professor *professor1 = new Professor();
     Professor *professor2 = new Professor();
     Student *student1 = new Student();
     Student *student2 = new Student();
+    Student *student3 = new Student();
+    Student *student4 = new Student();
 
     Headmaster *headMaster = new Headmaster();
     Secretary *secretary1 = new Secretary();
     Secretary *secretary2 = new Secretary();
+
+
+    Room *programmingRoom = new Room();
+    Room *healthcareRoom = new Room();
+    Room *officeRoom = new Room();
+
+    programmingRoom->setRoomName("Programming Room");
+    healthcareRoom->setRoomName("Healthcare Room");
+    officeRoom->setRoomName("Office Room");
 
     headMaster->setName("yassir");
     
@@ -52,7 +56,13 @@ int main()
     professor2->setName("prfss2");
     
     student1->setName("ll");
+    student1->assignRoom(programmingRoom);
     student2->setName("nn");
+    student2->assignRoom(programmingRoom);
+    student3->setName("Lisa");
+    student3->assignRoom(healthcareRoom);
+    student4->setName("L");
+    student4->assignRoom(healthcareRoom);
     
     // headmaster - professor - student - secretary
     ConcreteMediator *mediator = headMaster->getMediator();
@@ -61,61 +71,57 @@ int main()
     mediator->addForm(needCourseCreationForm);
     mediator->addForm(subscriptionToCourseForm);
     
-    // Component1 *c1 = mediator->getComponent1();
-    // Component2 *c2 = mediator->getComponent2();
+    TweakedMediator *notify = mediator->getTweakedMediator();
 
-    // c1->ExecFormCouseSubscriptionTemp();
-    // c2->ExecFormGraduationTemp();
 
-    // Start Process
-    // Attend Class : send notification to all professors
-    //headMaster->getMediator()->Notify(headMaster->getName(), "AttenClass");
-    // if professor has no class to teach and/or student has no class to attend
-    Room *mathRoom = new Course();
-    Room *programmingRoom = new Course();
-    Room *historyRoom = new Course();
-    Room *secOpsRoom = new Course();
-        // Create Course Object and affect room to the professor
 
-    mathRoom->setRoomName("Math");
-    programmingRoom->setRoomName("Programming");
-    historyRoom->setRoomName("History");
-    secOpsRoom->setRoomName("Security Operationnals");
+    notify->setHeadmaster(headMaster);
+    notify->setProfessor(professor1);
+    notify->setStudent(student1);
+    notify->setSecretary(secretary1);
+
+
+
+    professor1->assignRoom(programmingRoom);
+    professor1->setCurrentRoom(programmingRoom);
+    professor2->assignRoom(healthcareRoom);
+    professor2->setCurrentRoom(healthcareRoom);
     
-        // Create Course Object and affect room to the student
+    notify->attendClass(headMaster, professor1);
+    notify->attendClass(headMaster, professor2);
+
+    professor1->DoClass(professor1);
+    student1->setCurrentRoom(programmingRoom);
+    student2->setCurrentRoom(programmingRoom);
+
+    
+    professor2->DoClass(professor2);
+    student3->setCurrentRoom(healthcareRoom);
+    student4->setCurrentRoom(healthcareRoom);
+    
+    notify->teachCourse(professor1, student1);
+    notify->teachCourse(professor1, student2);
+    notify->teachCourse(professor2, student3);
+    notify->teachCourse(professor2, student4);
+
+    student1->attendClass(programmingRoom);
+    student2->attendClass(programmingRoom);
+    student3->attendClass(healthcareRoom);
+    student4->attendClass(healthcareRoom);
+
+    professor1->studentNeedToGraduate(student1);
+    professor1->studentNeedToGraduate(student2);
+
+    professor2->studentNeedToGraduate(student3);
+    professor2->studentNeedToGraduate(student4);
+    
+    notify->graduationRequest(professor1, headMaster);
+    notify->graduationRequest(professor2, headMaster);
+    
+
+
+
     std::cout << "---------------------------------" << std::endl;
-
-    
-// Professor Has Class Afected and Student has Course Afected
-    // Graduation Process
-    
-    // All Professor's has Class afected
-    //mediator->notify(headMaster->getName(), "AttendClass");
-    //mediator->notify(professor1->getName(), "TeachCourse");
-    // // Student Attended Enough Classes to Graduate
-    // mediator->notify(professor1->getName(), "GraduationRequest");
-    // mediator->notify(headmaster->getName(), "FormCourseRequest");
-    // mediator->notify(headmaster->getName(), "FillFormCourseRequest");
-    // mediator->notify(professor1->getName(), "SignFormCourseRequest");
- // Student Need More Classes to Graduate
-    // mediator->notify(student1->getName(), "FollowClass");
-    
-// Professor has no Class afected
-    // Professor Course Subscription Process
-
-    // Professor has no Class afected
-    // mediator->notify(professor1->getName(), "CourseSubscriptionRequest");
-    // mediator->notify(headmaster->getName(), "FormCourseRequest");
-    // mediator->notify(headmaster->getName(), "FillFormCourseRequest");
-    // mediator->notify(professor1->getName(), "SignFormCourseRequest");
-    // mediator->notify(professor1->getName(), "TeachCourse");
-
-// Student has no Course afected
-    // Student Course Subscription Process
-    
-    // Student has no Course afected
-
-
     delete professor1;
     delete professor2;
     delete student1;

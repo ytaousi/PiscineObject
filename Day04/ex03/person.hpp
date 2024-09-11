@@ -64,26 +64,7 @@ class Student : public Person
             return 0;
         };
         int attendClass(Room * p_classroom) {
-            std::vector<Room *> subscribedCourses = this->getSubscribedCourses();
-            Room* currentRoom = this->getCurrentRoom();
-            for (size_t i = 0; i < subscribedCourses.size(); i++)
-            {
-                if (subscribedCourses[i] == p_classroom)
-                {
-                    if (p_classroom == currentRoom)
-                    {
-                        std::cout << "I am ready to start the class to find a job : " << subscribedCourses[i]->getRoomName() << std::endl;
-                        return 0;
-                    }
-                    else
-                    {
-                        std::cout << "Ready to starting learning this module : " << subscribedCourses[i]->getRoomName() << " but this is not the currentRoom Affected to me : " << (this->getCurrentRoom() == NULL ? "NULL": this->getCurrentRoom()->getRoomName()) << std::endl;
-                        return 1;
-                    }
-                }
-            }
-            std::cout << "I am not Subscribed to This Course : " << p_classroom->getRoomName() << " I need to Request It from Headmaster" << std::endl;
-            return 1;
+            
         };
         void graduate(Course * p_course) { (void )p_course; };
 };
@@ -134,7 +115,9 @@ class Professor : public Person
             std::cout << "I am not assigned to this class, I need to request it from the headmaster" << std::endl;
             return 1;
         };
-        void studentNeedToGraduateForm(Student * p_student) {(void)p_student;};
+        void studentNeedToGraduateForm(Student * p_student) {
+            std::cout << "The Following Student need to graduate : " << p_student->getName() << std::endl;
+        };
 };
 
 
