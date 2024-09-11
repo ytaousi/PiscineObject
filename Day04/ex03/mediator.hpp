@@ -136,7 +136,7 @@ class TweakedMediator : public BaseComponent {
       this->st.push_back(student);
       return 0;
     }
-//Scenario 1
+    //Scenario 1
     void attendClass(Headmaster *, Person *) {
       std::cout << "All Professors Should Go to their Respective ClassRoom" << std::endl;
     };// headmaster - professor
@@ -147,10 +147,14 @@ class TweakedMediator : public BaseComponent {
       std::cout << "Starting Graduation Request : Ask Form from Secretay" << std::endl;
     }; // professor - headmaster
     void graduationFormRequest(Headmaster *, Secretary *) {
-      std::cout << "" << std::endl;
+      std::cout << "Starting Form Request : Give Form to be filled" << std::endl;
     };// headmaster - secretary
-    void graduationFillFormRequest(Headmaster *, Person *) {};// headmaster - professor
-    void graduationSignFormRequest(Person *, Headmaster *) {};// professor - headmaster
+    void graduationFillFormRequest(Headmaster *, Person *) {
+      std::cout << "Starting Form Filling : Give Form to be signed" << std::endl;
+    };// headmaster - professor
+    void graduationSignFormRequest(Person *, Headmaster *) {
+      std::cout << "Starting Form Signing : Give Form to be executed" << std::endl;
+    };// professor - headmaster
     void execFormGraduationTemp(Headmaster *, Person *) {}; // headmaster - student
 
     void courseSubscriptionRequest(Person *, Headmaster *) {}; // professor - headmaster
@@ -160,7 +164,7 @@ class TweakedMediator : public BaseComponent {
     void execFormCouseSubscriptionTemp(Headmaster *, Person *) {}; // headmaster - student
 
 
-//Scenario 2
+    //Scenario 2
     //void attendClass(Headmaster *, Person *) {};
     //void startLearning(Person *, Person *) {};
     //void graduationRequest(Person *, Headmaster *) {};
@@ -177,15 +181,11 @@ class TweakedMediator : public BaseComponent {
 class ConcreteMediator : public Mediator {
     std::vector<Form *> _formList; // (-,-)
  private:
-  Component1 *courseSubscriptionForm;
-  // Component2 *courseRequestForm;
-  Component2 *graduationForm;
   TweakedMediator *simulation;
 
  public:
-  ConcreteMediator(Component1 *c1, Component2 *c2, TweakedMediator *Tweak) : courseSubscriptionForm(c1), graduationForm(c2), simulation(Tweak) {
-    this->graduationForm->set_mediator(this);
-    this->courseSubscriptionForm->set_mediator(this);
+  ConcreteMediator(TweakedMediator *Tweak) : simulation(Tweak) {
+    this->simulation->set_mediator(this);
   }
   void addForm(Form *p_form) {
     this->_formList.push_back(p_form);
@@ -196,65 +196,45 @@ class ConcreteMediator : public Mediator {
   TweakedMediator *getTweakedMediator() {
     return this->simulation;
   }
-  Component1 *getComponent1()  {
-    return this->courseSubscriptionForm;
-  }
-  Component2 *getComponent2()  {
-    return this->graduationForm;
-  }
   // BaseComponent *sender
   void Notify(BaseComponent *sender, std::string event) const  {
     (void)sender;
     if (event == "AttendClass") {
-      
-      std::cout << "All Professors Should Go to their Respective ClassRoom" << std::endl;
-      this->courseSubscriptionForm->ProfAttendClass();
+      std::cout << "Event : " << event << " Triggered" << std::endl;
     }
     if (event == "TeachCourse") {
-      
-      std::cout << "ClassRoom have been afected to all professor's Start Teaching People" << std::endl;
-      this->courseSubscriptionForm->startTeaching();
+      std::cout << "Event : " << event << " Triggered" << std::endl;
     }
     if (event == "lbak7lawtou3amayn") {
-      std::cout << "student has failed the class" << std::endl;
-      // <----->
+      std::cout << "Event : " << event << " Triggered" << std::endl;
     }
     if (event == "CourseSubscriptionRequest") { // first
-      
-      this->courseSubscriptionForm->CourseSubscriptionRequest();
+      std::cout << "Event : " << event << " Triggered" << std::endl;
     }
     if (event == "FormCourseRequest") {
-      this->courseSubscriptionForm->CourseFormRequest();
+      std::cout << "Event : " << event << " Triggered" << std::endl;
     }
     if (event == "FillFormCourseRequest") {
-      this->courseSubscriptionForm->CourseFillFormRequest();
+      std::cout << "Event : " << event << " Triggered" << std::endl;
     }
     if (event == "SignFormCourseRequest") {
-      this->courseSubscriptionForm->SignFormRequest();
+      std::cout << "Event : " << event << " Triggered" << std::endl;
     }
-    if (event == "ExecuteFromRequest")
-    {
-      this->courseSubscriptionForm->ExecFormCouseSubscriptionTemp();
+    if (event == "ExecuteFromRequest") {
+      std::cout << "Event : " << event << " Triggered" << std::endl;
     }
 
     if (event == "GraduationRequest") {
-      std::cout << "Mediator reacts on D and triggers following operations:\n";
-      // processing for graduation request
-      // asking for graduation form process
-      this->graduationForm->GraduationRequest();
+     std::cout << "Event : " << event << " Triggered" << std::endl;
     }
     if (event == "FormGraduationRequest") {
-      std::cout << "Mediator reacts on D and triggers following operations:\n";
-      std::cout << "" << std::endl;
-      this->graduationForm->GraduationFormRequest();
+      std::cout << "Event : " << event << " Triggered" << std::endl;
     }
     if (event == "FillFormGraduationRequest") {
-      std::cout << "Mediator reacts on D and triggers following operations:\n";
-      this->graduationForm->GraduationFillFormRequest();
+      std::cout << "Event : " << event << " Triggered" << std::endl;
     }
     if (event == "SignFormGraduationRequest") {
-      std::cout << "Mediator reacts on D and triggers following operations:\n";
-      this->graduationForm->ExecFormGraduationTemp();
+      std::cout << "Event : " << event << " Triggered" << std::endl;
     }
   }
   void Receive() const {

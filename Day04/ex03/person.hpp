@@ -64,7 +64,21 @@ class Student : public Person
             return 0;
         };
         int attendClass(Room * p_classroom) {
-            
+            std::vector<Room *> subscribedCourses = this->getSubscribedCourses();
+            (void)p_classroom;
+            if (subscribedCourses.size() == 0)
+            {
+                std::cout << "I am not subscribed to any course" << std::endl;
+                return 1;
+            }
+            else
+            {
+                for (size_t i = 0; i < subscribedCourses.size(); i++)
+                {
+                    std::cout << i << std::endl;
+                }
+            }
+            return 0;
         };
         void graduate(Course * p_course) { (void )p_course; };
 };

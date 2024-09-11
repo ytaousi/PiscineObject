@@ -71,14 +71,14 @@ int main()
     mediator->addForm(needCourseCreationForm);
     mediator->addForm(subscriptionToCourseForm);
     
-    TweakedMediator *notify = mediator->getTweakedMediator();
+    TweakedMediator *mediatorTweakedComponent = mediator->getTweakedMediator();
 
 
 
-    notify->setHeadmaster(headMaster);
-    notify->setProfessor(professor1);
-    notify->setStudent(student1);
-    notify->setSecretary(secretary1);
+    mediatorTweakedComponent->setHeadmaster(headMaster);
+    mediatorTweakedComponent->setProfessor(professor1);
+    mediatorTweakedComponent->setStudent(student1);
+    mediatorTweakedComponent->setSecretary(secretary1);
 
 
 
@@ -87,36 +87,63 @@ int main()
     professor2->assignRoom(healthcareRoom);
     professor2->setCurrentRoom(healthcareRoom);
     
-    notify->attendClass(headMaster, professor1);
-    notify->attendClass(headMaster, professor2);
-
-    professor1->DoClass(professor1);
+    //mediator->Notify(headMaster, "AttendClass");
+    
+    mediatorTweakedComponent->attendClass(headMaster, professor1);
+    mediatorTweakedComponent->attendClass(headMaster, professor2);
+    
+    
+    professor1->doClass(programmingRoom);
     student1->setCurrentRoom(programmingRoom);
     student2->setCurrentRoom(programmingRoom);
 
     
-    professor2->DoClass(professor2);
+    professor2->doClass(healthcareRoom);
     student3->setCurrentRoom(healthcareRoom);
     student4->setCurrentRoom(healthcareRoom);
     
-    notify->teachCourse(professor1, student1);
-    notify->teachCourse(professor1, student2);
-    notify->teachCourse(professor2, student3);
-    notify->teachCourse(professor2, student4);
+    
+    //mediator->Notify(professor1, "TeachCourse");
+    //mediator->Notify(professor2, "TeachCourse");
+    
+    mediatorTweakedComponent->teachCourse(professor1, student1);
+    mediatorTweakedComponent->teachCourse(professor1, student2);
+    
+    mediatorTweakedComponent->teachCourse(professor2, student3);
+    mediatorTweakedComponent->teachCourse(professor2, student4);
 
     student1->attendClass(programmingRoom);
     student2->attendClass(programmingRoom);
     student3->attendClass(healthcareRoom);
     student4->attendClass(healthcareRoom);
 
-    professor1->studentNeedToGraduate(student1);
-    professor1->studentNeedToGraduate(student2);
+    //mediator->Notify(headMaster, "GraduationRequest");
+    professor1->studentNeedToGraduateForm(student1);
+    professor1->studentNeedToGraduateForm(student2);
 
-    professor2->studentNeedToGraduate(student3);
-    professor2->studentNeedToGraduate(student4);
+    professor2->studentNeedToGraduateForm(student3);
+    professor2->studentNeedToGraduateForm(student4);
     
-    notify->graduationRequest(professor1, headMaster);
-    notify->graduationRequest(professor2, headMaster);
+    mediatorTweakedComponent->graduationRequest(professor1, headMaster);
+    mediatorTweakedComponent->graduationRequest(professor1, headMaster);
+    mediatorTweakedComponent->graduationRequest(professor2, headMaster);
+    mediatorTweakedComponent->graduationRequest(professor2, headMaster);
+    //mediator->Notify(headMaster, "FormGraduationRequest");
+    mediatorTweakedComponent->graduationFormRequest(headMaster, secretary1);
+    mediatorTweakedComponent->graduationFormRequest(headMaster, secretary1);
+    mediatorTweakedComponent->graduationFormRequest(headMaster, secretary2);
+    mediatorTweakedComponent->graduationFormRequest(headMaster, secretary2);
+    //mediator->Notify(headMaster, "FillFormGraduationRequest");
+    mediatorTweakedComponent->graduationFillFormRequest(headMaster, professor1);
+    mediatorTweakedComponent->graduationFillFormRequest(headMaster, professor1);
+    mediatorTweakedComponent->graduationFillFormRequest(headMaster, professor2);
+    mediatorTweakedComponent->graduationFillFormRequest(headMaster, professor2);
+    //mediator->Notify(headMaster, "SignFormGraduationRequest");
+    mediatorTweakedComponent->graduationSignFormRequest(professor1, headMaster);
+    mediatorTweakedComponent->graduationSignFormRequest(professor1, headMaster);
+    mediatorTweakedComponent->graduationSignFormRequest(professor2, headMaster);
+    mediatorTweakedComponent->graduationSignFormRequest(professor2, headMaster);
+
     
 
 

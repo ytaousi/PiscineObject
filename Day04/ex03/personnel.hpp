@@ -10,9 +10,13 @@ class Headmaster
         std::vector<Form *> _formList;
         std::string         _name;
     public:
-        Headmaster() : _mediator(new ConcreteMediator(new Component1(), new Component2(), new TweakedMediator())) {// new ConcreteMediator(new Component1(), new Component2())
+        Headmaster() : _mediator(new ConcreteMediator(new TweakedMediator())) {// new ConcreteMediator(new Component1(), new Component2())
         };
-        ~Headmaster() {};
+        ~Headmaster() {
+            this->_name = "";
+            this->_formList.clear();
+            // ConcreteMediator should be properly deleted
+        };
         int requestForm(Form* _form){
             (void)_form;
             return 0;
@@ -47,12 +51,6 @@ class Headmaster
         }
         ConcreteMediator* getMediator() {
             return this->_mediator;
-        }
-        Component1* getComponent1() {
-            return this->_mediator->getComponent1();
-        }
-        Component2* getComponent2() {
-            return this->_mediator->getComponent2();
         }
         void setName(std::string name) {
             this->_name = name;
