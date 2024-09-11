@@ -2,18 +2,17 @@
 #define ROOM_HPP
 
 #include <string>
+#include <iostream>
 
-template <typename T>
+
 class Room
 {
     private:
-        T* _room;
         static int _uniqueID;
         int _roomID;
         std::string _roomName;
     public:
         Room() {
-            this->_room = new T();
             this->_roomID = _uniqueID++;
             this->_roomName = "";
         };
@@ -27,17 +26,14 @@ class Room
         int getRoomID() {
             return this->_roomID;
         };
-        T* getRoom() {
-            return this->_room;
-        };
 };
 
-class Course : public Room<Course>
+class Course : public Room
 {
     private:
     public:
-        Course();
-        ~Course();
+        Course(): Room(){};
+        ~Course(){};
 };
 
 #endif

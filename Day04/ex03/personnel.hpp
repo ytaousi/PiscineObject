@@ -8,6 +8,7 @@ class Headmaster
     protected:
         ConcreteMediator* _mediator;
         std::vector<Form *> _formList;
+        std::string         _name;
     public:
         Headmaster() : _mediator(new ConcreteMediator(new Component1(), new Component2())) {// new ConcreteMediator(new Component1(), new Component2())
             std::cout << "Headmaster Created" << std::endl;
@@ -54,6 +55,79 @@ class Headmaster
         Component2* getComponent2() {
             return this->_mediator->getComponent2();
         }
+        void setName(std::string name) {
+            this->_name = name;
+        }
+        std::string getName() {
+            return this->_name;
+        }
+};
+
+class Secretary 
+{
+    private:
+        std::vector<Form *> formList;
+        //FormCreator* _formCreator;
+        std::string _name;
+    public:
+        Secretary() {
+            ;
+        }
+        // Secretary(FormCreator *formCreator = nullptr) _formCreator(formCreator) { 
+        // };
+        virtual ~Secretary() {
+        };
+        void createForm(t_FormType t_formType) const {
+            if (t_formType == CourseFinished)
+            {
+                //CourseFinishedFormCreator1();
+                CourseFinishedFormCreator1 *CourseFinished = new CourseFinishedFormCreator1();
+                
+                Form *form = CourseFinished->FactoryMethod();
+                form->bestBypassForever();
+                // get a const value of the object to pushback to the list
+                
+            }
+            else if (t_formType == NeedMoreClassRoom)
+            {
+                //CourseFinishedFormCreator1();
+                NeedMoreClassRoomFormCreator1 *NeedMoreClassRoom = new NeedMoreClassRoomFormCreator1();
+                
+                Form *form = NeedMoreClassRoom->FactoryMethod();
+                form->bestBypassForever();
+                //NeedMoreClassRoom->FactoryMethod();
+                
+            }
+            else if (t_formType == NeedCourseCreation)
+            {
+               NeedCourseCreationFormCreator1 *NeedCourseCreation = new NeedCourseCreationFormCreator1();
+                
+                Form *form = NeedCourseCreation->FactoryMethod();
+                form->bestBypassForever();
+                
+                //NeedCourseCreation->FactoryMethod();
+                 
+            }
+            else if (t_formType == SubscriptionToCourse)
+            {
+                SubscriptionToCourseFormCreator1 *SubscriptionToCourse = new SubscriptionToCourseFormCreator1();
+                
+                Form *form = SubscriptionToCourse->FactoryMethod();
+                form->bestBypassForever();
+                //SubscriptionToCourse->createForm();
+                
+            }
+        }
+        std::vector<Form *> getList() {
+            return formList;
+        }
+        void setName(std::string name) {
+            this->_name = name;
+        }
+        std::string getName() {
+            return this->_name;
+        }
+
 };
 
 #endif
