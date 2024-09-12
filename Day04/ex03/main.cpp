@@ -74,12 +74,10 @@ int main()
     TweakedMediator *mediatorTweakedComponent = mediator->getTweakedMediator();
 
 
-
     mediatorTweakedComponent->setHeadmaster(headMaster);
     mediatorTweakedComponent->setProfessor(professor1);
     mediatorTweakedComponent->setStudent(student1);
     mediatorTweakedComponent->setSecretary(secretary1);
-
 
 
     professor1->assignRoom(programmingRoom);
@@ -143,10 +141,6 @@ int main()
     mediatorTweakedComponent->graduationSignFormRequest(professor1, headMaster);
     mediatorTweakedComponent->graduationSignFormRequest(professor2, headMaster);
     mediatorTweakedComponent->graduationSignFormRequest(professor2, headMaster);
-
-    
-
-
 
     std::cout << "---------------------------------" << std::endl;
     delete professor1;

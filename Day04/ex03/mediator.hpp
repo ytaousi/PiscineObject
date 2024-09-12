@@ -82,13 +82,24 @@ class TweakedMediator : public BaseComponent {
     void graduationSignFormRequest(Person *, Headmaster *) {
       std::cout << "Starting Form Signing : Give Form to be executed" << std::endl;
     };// professor - headmaster
-    void execFormGraduationTemp(Headmaster *, Person *) {}; // headmaster - student
-
-    void courseSubscriptionRequest(Person *, Headmaster *) {}; // professor - headmaster
-    void courseFormRequest(Headmaster *, Secretary *) {}; // headmaster - secretary
-    void courseFillFormRequest(Secretary *, Person *) {};  // secretary - professor
-    void signFormRequest(Person *, Headmaster *) {};  // professor - headmaster
-    void execFormCouseSubscriptionTemp(Headmaster *, Person *) {}; // headmaster - student
+    void execFormGraduationTemp(Headmaster *, Person *) {
+      std::cout << "Starting Form Graduation Execution" << std::endl;
+    }; // headmaster - student
+    void courseSubscriptionRequest(Person *, Headmaster *) {
+      std::cout << "Starting Course Subscription Request" << std::endl;
+    }; // professor - headmaster
+    void courseFormRequest(Headmaster *, Secretary *) {
+      std::cout << "Starting Form Request : Give Form to be filled" << std::endl;
+    }; // headmaster - secretary
+    void courseFillFormRequest(Secretary *, Person *) {
+      std::cout << "Starting Form Filling : Give Form to be signed" << std::endl;
+    };  // secretary - professor
+    void signFormRequest(Person *, Headmaster *) {
+      std::cout << "Starting Form Signing : Give Form to be executed" << std::endl;
+    };  // professor - headmaster
+    void execFormCouseSubscriptionTemp(Headmaster *, Person *) {
+      std::cout << "Starting Form Course Subscription Execution" << std::endl;
+    }; // headmaster - student
 
 
     //Scenario 2

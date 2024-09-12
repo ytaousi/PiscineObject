@@ -81,11 +81,26 @@ class Parser
                 }
                 if j >= 5
             }
-            // parserParseNode();
-            // parserParseEvent();
-            // parserParserail();
+            parserParseNode(_nodes);
+            parserParseEvent(_events);
+            parserParserail(_rails);
         };
         ~Parser(){};
+        void parseNode(std::vector<std::string> listNode) {
+            for (size_t i = 0; i < listNode.size(); i++) {
+                std::cout << listNodes[i] << std::endl;
+            }
+        };
+        void parseRail(std::vector<std::string> listRail) {
+            for (size_t i = 0; i < listRail.size(); i++) {
+                std::cout << listRail[i] << std::endl;
+            }
+        };
+        void parseEvent(std::vector<std::string> listEvent) {
+            for (size_t i = 0; i < listEvent.size(); i++) {
+                std::cout << listEvent[i] << std::endl;
+            }
+        };
 };
 
 #endif

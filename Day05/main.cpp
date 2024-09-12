@@ -10,23 +10,16 @@ int processing(char *file1, char *file2)
     return (1);
 }
 
+// void initLogger() {}
 
-// void initLogger(char *railsNetwork, char *trainsModels)
-// {
-//     (void)railsNetwork;
-//     (void)trainsModels;
-// }
-
-// void initTrains(char *railsNetwork, char *trainsModels)
-// {
-//     (void)railsNetwork;
-//     (void)trainsModels;
-//     // create parser object
-// }
+void initRailNetworkComponents() {
+    // rails - nodes - events - trains 
+}
 
 // void lunchSimulation()
 // {
 //     // create simulation object
+//     // Facade , mediator .
 // }
 
 int main(int ac, char **av)
@@ -38,8 +31,8 @@ int main(int ac, char **av)
             std::cout << "Success" << std::endl;
         else
             std::cout << "Error" << std::endl;
-        // initLogger(av[1], av[2]);
-        // initTrains(av[1], av[2]);
+        // initLogger();
+        initRailNetworkComponents();
         // lunchSimulation();
     }
     else
@@ -48,3 +41,7 @@ int main(int ac, char **av)
     }
     return (0);
 }
+
+// Facade - Observer - Singleton 
+// SingleResponsibility - OpenForExtentionClosedForModification - LiskovSubstitution
+// InterfaceSegregation - DependencyInversion
